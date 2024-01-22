@@ -5,6 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { servo } from "../api/api";
 
@@ -14,15 +15,15 @@ export default function Home() {
       <Text style={styles.Titulo}>App Dosificador</Text>
       <Text style={styles.color}>Programar hora para dosificación</Text>
       <View style={styles.contInputs}>
-        <TextInput style={styles.input} autoComplete="" />
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} keyboardType="number-pad" />
+        <TextInput style={styles.input} keyboardType="number-pad" />
       </View>
       <TouchableOpacity
         style={styles.boton}
         onPress={async (e) => {
           e.preventDefault();
           try {
-            const response = await servo(1);
+            const response = await servo();
             console.log(response);
           } catch (error) {
             console.log(error);
@@ -31,6 +32,9 @@ export default function Home() {
       >
         <Text style={styles.botonText}>Mover servo</Text>
       </TouchableOpacity>
+      <View>
+        <Image source={require('../assets/img/img.png')} />
+      </View>
     </View>
   );
 }
@@ -40,16 +44,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     // fontFamily: "Poppins",
     color: "white",
-    textAlign:'center'
+    textAlign: "center",
   },
   boton: {
     backgroundColor: "#7B78AA",
     padding: "10px",
     marginTop: "10px",
     borderRadius: 10,
-    marginTop:10,
-    width:100,
-    textAlign:"center"
+    marginTop: 10,
+    width: 100,
+    textAlign: "center",
   },
   Titulo: {
     color: "white",
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     width: 50,
     borderRadius: 10,
-    marginTop:5,
+    marginTop: 5,
   },
   contInputs: {
     display: "flex",

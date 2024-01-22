@@ -1,3 +1,3 @@
 import axios from './axios'
 
-export const servo = ()=>axios.post('/servo',estado)
+export const servo = ()=>axios.get('/servo')
